@@ -3,7 +3,9 @@ module.exports = {
   extends: ['standard', 'standard-react'],
   rules: {
     'react/prop-types': 0,
-    'object-curly-spacing': ['error', 'never']
+    'object-curly-spacing': ['error', 'never'],
+    'space-before-function-paren': 'off',
+    'object-curly-spacing': 'off'
   },
   settings: {
     react: {

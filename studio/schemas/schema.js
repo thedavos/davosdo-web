@@ -10,6 +10,9 @@ import person from './documents/person'
 import codeOfConduct from './documents/codeOfConduct'
 import session from './documents/session'
 import program from './documents/program'
+import post from './documents/post'
+import tag from './documents/tag'
+import project from './documents/project'
 
 // Object types
 import mainImage from './objects/mainImage'
@@ -17,9 +20,13 @@ import venue from './objects/venue'
 import schedule from './objects/schedule'
 import scheduleItem from './objects/scheduleItem'
 import bioPortableText from './objects/bioPortableText'
+import commonPortableText from './objects/commonPortableText'
 import bodyPortableText from './objects/bodyPortableText'
 import eventReference from './objects/eventReference'
 import personReference from './objects/personReference'
+import tagReference from './objects/tagReference'
+import projectReference from './objects/projectReference'
+import social from './objects/social'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -35,6 +42,9 @@ export default createSchema({
     person,
     venue,
     session,
+    post,
+    tag,
+    project,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
@@ -43,8 +53,12 @@ export default createSchema({
     scheduleItem,
     mainImage,
     bioPortableText,
+    commonPortableText,
     bodyPortableText,
     eventReference,
-    personReference
+    personReference,
+    tagReference,
+    projectReference,
+    social
   ])
 })

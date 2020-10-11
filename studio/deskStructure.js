@@ -3,9 +3,21 @@ import MdPerson from 'react-icons/lib/md/person'
 import MdEventNote from 'react-icons/lib/md/event'
 import MdGavel from 'react-icons/lib/md/gavel'
 import MdInfo from 'react-icons/lib/md/info-outline'
+import MdBook from 'react-icons/lib/md/book'
+import FaTags from 'react-icons/lib/fa/tags'
+import MdWork from 'react-icons/lib/md/work'
 
 const hiddenDocTypes = listItem =>
-  !['program', 'session', 'person', 'eventInformation', 'codeOfConduct'].includes(listItem.getId())
+  ![
+    'program',
+    'session',
+    'person',
+    'eventInformation',
+    'codeOfConduct',
+    'post',
+    'tag',
+    'project'
+  ].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -47,6 +59,21 @@ export default () =>
             .schemaType('codeOfConduct')
             .documentId('codeOfConduct')
         ),
+      S.listItem()
+        .title('Posts')
+        .icon(MdBook)
+        .schemaType('post')
+        .child(S.documentTypeList('post').title('Posts')),
+      S.listItem()
+        .title('Tags')
+        .icon(FaTags)
+        .schemaType('tag')
+        .child(S.documentTypeList('tag').title('Tags')),
+      S.listItem()
+        .title('Projects')
+        .icon(MdWork)
+        .schemaType('project')
+        .child(S.documentTypeList('project').title('Projects')),
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
       // defined the structure above
