@@ -1,0 +1,86 @@
+<template>
+  <section id="projectList" class="projectList">
+    <div class="projectList-container">
+      <h2 class="projectList__title">Latest Work</h2>
+      <p class="projectList__description">
+        I have experience in a number of different areas. Have a look at what
+        I'm working on right now.
+      </p>
+      <Project
+        v-for="(project, index) in projects"
+        :key="index"
+        :title="project.title"
+        :description="project.description"
+        :tags="project.tags"
+        class="projectList__project"
+      />
+    </div>
+  </section>
+</template>
+
+<script>
+import Project from './Project'
+
+export default {
+  name: 'ProjectList',
+
+  components: {
+    Project
+  },
+
+  props: {
+    projects: {
+      type: Array,
+      default: () => []
+    }
+  }
+}
+</script>
+
+<style scoped>
+@import '~/styles/custom-properties.css';
+
+.projectList {
+  margin-top: 50px;
+}
+
+.projectList-container {
+  max-width: var(--width-medium);
+  padding: 0 1.5em;
+}
+
+.projectList__title {
+  margin: 0;
+  text-align: center;
+  margin-bottom: 1em;
+  position: relative;
+  font-size: var(--font-title2-size);
+  line-height: var(--font-title2-line-height);
+  font-weight: var(--font-weight-bold);
+}
+
+.projectList__title::after {
+  content: '';
+  position: absolute;
+  top: 1.5em;
+  width: 3em;
+  height: 3px;
+  background-color: var(--color-light-gray);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.projectList__description {
+  margin: 0;
+  text-align: center;
+  color: var(--color-black);
+  font-size: var(--font-base-size);
+  line-height: var(--font-base-line-height);
+}
+
+.projectList__project {
+  padding-top: 5em;
+}
+</style>

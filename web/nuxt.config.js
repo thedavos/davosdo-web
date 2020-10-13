@@ -9,7 +9,7 @@ const routesQuery = `
 `
 
 export default {
-  mode: 'spa',
+  ssr: false,
 
   /*
    ** Headers of the page
@@ -37,12 +37,22 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/eventInformation'],
+  plugins: ['~/plugins/eventInformation', '~/plugins/smoothScroll'],
 
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/fontawesome'],
+
+  /**
+   ** Fontawesome
+   */
+  fontawesome: {
+    icons: {
+      solid: true,
+      brands: true
+    }
+  },
 
   /*
    ** Set global info from sanity document

@@ -13,15 +13,19 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "5.15.1",
+    "@fortawesome/free-solid-svg-icons": "5.15.1",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/pwa": "^2.6.0",
     "@sanity/client": "^1.150.1",
     "@sanity/image-url": "^0.140.19",
     "cross-env": "^5.2.0",
     "groq": "^0.140.0",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.6.2",
+    "nuxt": "^2.14.6",
     "sanity-blocks-vue-component": "^0.1.0",
-    "vue-date-fns": "^1.0.0"
+    "vue-date-fns": "^1.0.0",
+    "vue2-smooth-scroll": "1.5.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

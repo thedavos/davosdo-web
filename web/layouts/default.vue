@@ -22,11 +22,10 @@ export default {
 </script>
 
 <style>
-@import '../styles/custom-media.css';
-@import '../styles/custom-properties.css';
+@import '../styles/app.css';
 
 html {
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-default);
   font-size: var(--font-base-size);
   line-height: var(--font-base-line-height);
 }

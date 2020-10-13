@@ -1,6 +1,8 @@
 <template>
-  <section class="container">
-    <header class="header">
+  <main class="home-container">
+    <Hero />
+    <ProjectList class="home-projectList" :projects="projects" />
+    <!-- <header class="header">
       <h1 class="title">{{ info.name }}</h1>
       <p class="subtitle">{{ info.description }}</p>
       <div class="dates">
@@ -9,9 +11,9 @@
         {{ new Date(info.schedule.to) | dateFilter('ha') }}
       </div>
       <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div>
-    </header>
+    </header> -->
 
-    <figure :v-if="info.image">
+    <!-- <figure :v-if="info.image">
       <SanityImage
         :image="info.image"
         :width="1800"
@@ -24,16 +26,18 @@
     <div class="sessionListContainer">
       <h2 class="sessionListTitle">Schedule</h2>
       <SessionList :program="program" :info="info" />
-    </div>
-  </section>
+    </div> -->
+  </main>
 </template>
 
 <script>
 import { dateFilter } from 'vue-date-fns'
 
 import sanityClient from '../sanityClient'
-import SanityImage from '~/components/SanityImage'
-import SessionList from '~/components/SessionList'
+import Hero from '~/components/Hero'
+import ProjectList from '~/components/projects/ProjectList'
+// import SanityImage from '~/components/SanityImage'
+// import SessionList from '~/components/SessionList'
 
 const query = `
   {
@@ -45,15 +49,37 @@ const query = `
 
 export default {
   components: {
-    SanityImage,
-    SessionList
+    Hero,
+    ProjectList
+    // SanityImage,
+    // SessionList
   },
   filters: {
     dateFilter
   },
   data() {
     return {
-      program: this.$store.getters.getProgram
+      program: this.$store.getters.getProgram,
+      projects: [
+        {
+          title: 'Coinbel',
+          description:
+            "A minimalist Jekyll theme that you're looking at it right now",
+          tags: ['Sass', 'Bootstrap']
+        },
+        {
+          title: 'Foxbel Video',
+          description:
+            "A minimalist Jekyll theme that you're looking at it right now",
+          tags: ['Sass', 'Bootstrap', 'Javascript', 'Vue']
+        },
+        {
+          title: 'Foxbel Music',
+          description:
+            "A minimalist Jekyll theme that you're looking at it right now",
+          tags: ['Sass', 'Bootstrap']
+        }
+      ]
     }
   },
   async asyncData() {
@@ -86,10 +112,14 @@ export default {
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
-.container {
+.home-container {
   padding: 1.5rem 0;
   box-sizing: border-box;
   min-height: calc(100% - 72px - 216px);
+}
+
+.home-projectList {
+  margin: 4em 0;
 }
 
 .header {
