@@ -1,9 +1,6 @@
 import S from '@sanity/desk-tool/structure-builder'
-import MdInfo from 'react-icons/lib/md/info-outline'
-import MdBook from 'react-icons/lib/md/book'
-import FaTags from 'react-icons/lib/fa/tags'
-import FaTwitter from 'react-icons/lib/fa/twitter'
-import MdWork from 'react-icons/lib/md/work'
+import { FaTags, FaTwitter } from 'react-icons/fa'
+import { MdInfo, MdBook, MdWork } from 'react-icons/md'
 
 const hiddenDocTypes = listItem =>
   !['websiteInformation', 'post', 'tag', 'project', 'social'].includes(listItem.getId())
