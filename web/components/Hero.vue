@@ -29,16 +29,18 @@
           class="hero__socialItem"
         />
       </div>
-      <a
-        v-smooth-scroll="{ duration: 1000 }"
-        href="#projectList"
-        class="hero-more"
-      >
-        <font-awesome-icon
-          class="hero-more__icon fa-2x"
-          :icon="['fas', 'angle-down']"
-        />
-      </a>
+      <div class="hero-more__wrapper">
+        <a
+          v-smooth-scroll="{ duration: 1000 }"
+          href="#projects"
+          class="hero-more"
+        >
+          <font-awesome-icon
+            class="hero-more__icon fa-2x"
+            :icon="['fas', 'angle-down']"
+          />
+        </a>
+      </div>
     </div>
   </section>
 </template>
@@ -75,9 +77,8 @@ export default {
 
 .hero__description {
   text-align: center;
-  font-size: var(--font-large-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--font-large-line-height);
+  margin: 2em 0 4em 0;
 }
 
 .hero__social {
@@ -96,9 +97,12 @@ export default {
   margin-top: 0;
 }
 
-.hero-more {
+.hero-more__wrapper {
   text-align: center;
-  display: block;
+}
+
+.hero-more {
+  display: inline-block;
 }
 
 .hero-more__icon {
@@ -106,10 +110,37 @@ export default {
   position: relative;
   top: 0;
   transition: all 0.3s;
+  color: var(--color-gray);
 }
 
 .hero-more__icon:hover {
   top: 4px;
   color: var(--color-accent);
+}
+
+@media (--media-min-medium) {
+  .hero {
+    width: 60%;
+    margin: auto;
+  }
+
+  .hero-container {
+    padding-top: 4em;
+  }
+
+  .hero__social {
+    flex-direction: row;
+    justify-content: center;
+    margin: 6em 0;
+  }
+
+  .hero__socialItem {
+    margin-top: 0;
+    margin-left: 1em;
+  }
+
+  .hero__social:first-child {
+    margin-left: 0;
+  }
 }
 </style>

@@ -1,52 +1,54 @@
 <template>
   <footer class="footer">
     <div class="footer-container">
-      <div class="footer-intro">
-        <div class="footer-logo">
-          <a href="" class="footer-logo__link">Davos</a>
+      <div class="footer-top">
+        <div class="footer-intro">
+          <div class="footer-logo">
+            <a href="" class="footer-logo__link">Davos</a>
+          </div>
+          <p class="footer-description">
+            Hi, my name is Adam Howard. I’m a writer and photographer based in
+            Portland. I like being at the center of events, being free and
+            enjoying every moment.
+          </p>
+          <div class="footer-social">
+            <SocialCircle
+              icon="twitter"
+              url="https://twitter.com/leonidasesteban"
+              blank
+              class="footer-social__link"
+            />
+            <SocialCircle
+              icon="github"
+              url="https://twitter.com/leonidasesteban"
+              blank
+              class="footer-social__link"
+            />
+            <SocialCircle
+              icon="medium"
+              url="https://twitter.com/leonidasesteban"
+              blank
+              class="footer-social__link"
+            />
+          </div>
         </div>
-        <p class="footer-description">
-          Hi, my name is Adam Howard. I’m a writer and photographer based in
-          Portland. I like being at the center of events, being free and
-          enjoying every moment.
-        </p>
-        <div class="footer-social">
-          <SocialCircle
-            icon="twitter"
-            url="https://twitter.com/leonidasesteban"
-            blank
-            class="footer-social__link"
+        <div class="footer-posts">
+          <h2 class="footer-posts__title">Recent Posts</h2>
+          <RecentPost
+            class="footer-post__recentPost"
+            title="That which does not kill us makes us stronger"
+            date="NOV 13, 2018"
+            image="https://bonso.netlify.app/images/20.jpg"
+            url="https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger"
           />
-          <SocialCircle
-            icon="github"
-            url="https://twitter.com/leonidasesteban"
-            blank
-            class="footer-social__link"
-          />
-          <SocialCircle
-            icon="medium"
-            url="https://twitter.com/leonidasesteban"
-            blank
-            class="footer-social__link"
+          <RecentPost
+            class="footer-post__recentPost"
+            title="Do what you can, with what you have, where you are"
+            date="NOV 12, 2018"
+            image="https://bonso.netlify.app/images/20.jpg"
+            url="https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger"
           />
         </div>
-      </div>
-      <div class="footer-posts">
-        <h2 class="footer-posts__title">Recent Posts</h2>
-        <RecentPost
-          class="footer-post__recentPost"
-          title="That which does not kill us makes us stronger"
-          date="NOV 13, 2018"
-          image="https://bonso.netlify.app/images/20.jpg"
-          url="https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger"
-        />
-        <RecentPost
-          class="footer-post__recentPost"
-          title="Do what you can, with what you have, where you are"
-          date="NOV 12, 2018"
-          image="https://bonso.netlify.app/images/20.jpg"
-          url="https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger"
-        />
       </div>
       <div class="footer-power">
         2020 © <a href="/" target="_blank">Davos</a>. Developed & Designed by
@@ -58,7 +60,7 @@
 
 <script>
 import SocialCircle from './social/socialCircle'
-import RecentPost from './posts/recentPost'
+import RecentPost from './posts/RecentPost'
 
 export default {
   components: {
@@ -88,6 +90,7 @@ export default {
 
 .footer-container {
   max-width: var(--width-medium);
+  padding: 0 1.5em;
   margin: auto;
 }
 
@@ -113,8 +116,8 @@ export default {
 
 .footer-description {
   text-align: start;
-  font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
+  font-size: var(--font-base-size);
+  line-height: var(--font-base-line-height);
   color: var(--color-gray);
 }
 
@@ -148,18 +151,17 @@ export default {
 }
 
 .footer {
-  padding: 1.5rem;
   padding-top: 2.5rem;
   padding-bottom: 0;
   text-align: center;
-  font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
   background-color: var(--color-light-gray);
 }
 
 .footer-power {
   padding: 30px 0;
   color: #6b6a79;
+  font-size: var(--font-base-size);
+  line-height: var(--font-base-line-height);
   border-top: 1px solid #eee;
 }
 
@@ -171,5 +173,15 @@ export default {
 
 .footer-power a:hover {
   color: var(--color-accent);
+}
+
+@media (--media-min-medium) {
+  .footer-top {
+    display: flex;
+  }
+
+  .footer-description {
+    width: 80%;
+  }
 }
 </style>

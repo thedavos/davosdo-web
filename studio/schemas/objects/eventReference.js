@@ -8,7 +8,7 @@ export default {
       name: 'event',
       to: [
         {
-          type: 'eventInformation'
+          type: 'websiteInformation'
         }
       ]
     }

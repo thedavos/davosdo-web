@@ -1,18 +1,24 @@
 <template>
   <div class="project">
-    <h3 class="project__title">{{ title }}</h3>
-    <p class="project__excerpt">{{ description }}</p>
-    <SocialBlock
-      class="project__button"
-      url="https://github.com/ryanmcdermott/clean-code-javascript"
-      icon="twitter"
-      name="Visit Project"
-    />
-    <div class="project-tags">
-      <div v-for="(tag, index) in tags" :key="index" class="project__tag">
-        <span>{{ tag }}</span>
+    <div class="project__content">
+      <h3 class="project__title">{{ title }}</h3>
+      <p class="project__excerpt">{{ description }}</p>
+      <SocialBlock
+        class="project__button"
+        :url="url"
+        icon-type="fas"
+        icon="link"
+        name="Visit Project"
+      />
+      <div class="project-tags">
+        <div v-for="(tag, index) in tags" :key="index" class="project__tag">
+          <span>{{ tag }}</span>
+        </div>
       </div>
     </div>
+    <figure class="project__figure">
+      <img :src="image" class="project__image" :alt="title" />
+    </figure>
   </div>
 </template>
 
@@ -39,6 +45,14 @@ export default {
       type: Array,
       default: () => [],
       required: true
+    },
+    image: {
+      type: String,
+      required: true
+    },
+    url: {
+      type: String,
+      required: true
     }
   }
 }
@@ -46,9 +60,6 @@ export default {
 
 <style scoped>
 @import '~/styles/custom-properties.css';
-
-.project {
-}
 
 .project__title {
   position: relative;
@@ -71,8 +82,6 @@ export default {
 
 .project__excerpt {
   color: var(--color-black);
-  font-size: var(--font-base-size);
-  line-height: var(--font-base-line-height);
   margin-bottom: 0;
 }
 
@@ -99,5 +108,45 @@ export default {
   background-color: var(--color-light-gray);
   display: inline-block;
   margin-bottom: 0.5em;
+}
+
+.project__figure {
+  display: none;
+}
+
+@media (--media-min-medium) {
+  .project__figure {
+    display: block;
+  }
+
+  .project {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .project:nth-of-type(even) {
+    flex-direction: row-reverse;
+  }
+
+  .project:nth-of-type(even) .project__content {
+    margin-right: 0;
+    margin-left: 5em;
+  }
+
+  .project__content {
+    margin-right: 5em;
+  }
+
+  .project__figure {
+    width: 50%;
+    margin: 0;
+  }
+
+  .project__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 }
 </style>

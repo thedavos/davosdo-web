@@ -37,7 +37,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/eventInformation', '~/plugins/smoothScroll'],
+  plugins: [
+    '~/plugins/eventInformation',
+    '~/plugins/smoothScroll',
+    '~/plugins/vue-agile'
+  ],
 
   /*
    ** Nuxt.js modules
@@ -80,6 +84,11 @@ export default {
    ** Build configuration
    */
   build: {
+    loaders: {
+      css: {
+        sourceMap: false
+      }
+    },
     postcss: {
       plugins: {
         'postcss-import': {},
@@ -111,6 +120,13 @@ export default {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+    },
+
+    vue: {
+      config: {
+        productionTip: false,
+        devtools: true
       }
     }
   }

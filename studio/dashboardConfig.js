@@ -6,7 +6,7 @@ export default {
         templateRepoId: 'sanity-io/sanity-template-nuxt-events'
       }
     },
-    {name: 'structure-menu'},
+    { name: 'structure-menu' },
     {
       name: 'project-info',
       options: {
@@ -39,15 +39,15 @@ export default {
             value: 'https://github.com/thedavos/davosdo-web',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://davosdo-web.netlify.app', category: 'apps'}
+          { title: 'Frontend', value: 'https://davosdo-web.netlify.app', category: 'apps' }
         ]
       }
     },
-    {name: 'project-users', layout: {height: 'auto'}},
+    { name: 'project-users', layout: { height: 'auto' } },
     {
       name: 'document-list',
-      options: {title: 'Recently created sessions', order: '_createdAt desc', types: ['session']},
-      layout: {width: 'medium'}
+      options: { title: 'Recently created posts', order: '_createdAt desc', types: ['post'] },
+      layout: { width: 'medium' }
     }
   ]
 }

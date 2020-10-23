@@ -2,9 +2,9 @@
   <header class="header">
     <nuxt-link to="/" class="home">Davos</nuxt-link>
     <nav>
-      <nuxt-link to="/sessions" class="header__link">About</nuxt-link>
-      <nuxt-link to="/sessions" class="header__link">Projects</nuxt-link>
-      <nuxt-link to="/speakers" class="header__link">Blog</nuxt-link>
+      <nuxt-link to="/about" class="header__link">About</nuxt-link>
+      <nuxt-link to="/projects" class="header__link">Projects</nuxt-link>
+      <nuxt-link to="/blog" class="header__link">Blog</nuxt-link>
     </nav>
   </header>
 </template>

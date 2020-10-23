@@ -1,6 +1,9 @@
 <template>
   <a :href="url" class="socialBlock" :target="isBlank">
-    <font-awesome-icon class="socialBlock__icon fa-lg" :icon="['fab', icon]" />
+    <font-awesome-icon
+      class="socialBlock__icon fa-lg"
+      :icon="[iconType, icon]"
+    />
     <span class="socialBlock__text">{{ name }}</span>
   </a>
 </template>
@@ -17,6 +20,10 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    iconType: {
+      type: String,
+      default: 'fab'
     }
   }
 }
@@ -39,6 +46,7 @@ export default {
   background-color: var(--color-white);
   border: solid 1px var(--color-gray);
   box-shadow: 2px 2px 1px var(--color-accent);
+  color: var(--color-accent);
 }
 
 .socialBlock__icon {
@@ -46,7 +54,6 @@ export default {
 }
 
 .socialBlock__text {
-  font-size: var(--font-base-size);
   font-weight: var(--font-weight-medium);
   color: var(--color-black);
   letter-spacing: 0.5px;

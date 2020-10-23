@@ -1,5 +1,5 @@
 <template>
-  <section id="projectList" class="projectList">
+  <section id="projects" class="projectList">
     <div class="projectList-container">
       <h2 class="projectList__title">Latest Work</h2>
       <p class="projectList__description">
@@ -12,6 +12,8 @@
         :title="project.title"
         :description="project.description"
         :tags="project.tags"
+        :url="project.url"
+        :image="project.image"
         class="projectList__project"
       />
     </div>
@@ -46,6 +48,7 @@ export default {
 
 .projectList-container {
   max-width: var(--width-medium);
+  margin: 0 auto;
   padding: 0 1.5em;
 }
 
@@ -73,14 +76,18 @@ export default {
 }
 
 .projectList__description {
-  margin: 0;
+  margin: 0 auto;
   text-align: center;
   color: var(--color-black);
-  font-size: var(--font-base-size);
-  line-height: var(--font-base-line-height);
 }
 
 .projectList__project {
   padding-top: 5em;
+}
+
+@media (--media-min-medium) {
+  .projectList__description {
+    width: 60%;
+  }
 }
 </style>

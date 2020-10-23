@@ -1,63 +1,26 @@
 import S from '@sanity/desk-tool/structure-builder'
-import MdPerson from 'react-icons/lib/md/person'
-import MdEventNote from 'react-icons/lib/md/event'
-import MdGavel from 'react-icons/lib/md/gavel'
 import MdInfo from 'react-icons/lib/md/info-outline'
 import MdBook from 'react-icons/lib/md/book'
 import FaTags from 'react-icons/lib/fa/tags'
+import FaTwitter from 'react-icons/lib/fa/twitter'
 import MdWork from 'react-icons/lib/md/work'
 
 const hiddenDocTypes = listItem =>
-  ![
-    'program',
-    'session',
-    'person',
-    'eventInformation',
-    'codeOfConduct',
-    'post',
-    'tag',
-    'project'
-  ].includes(listItem.getId())
+  !['websiteInformation', 'post', 'tag', 'project', 'social'].includes(listItem.getId())
 
 export default () =>
   S.list()
     .title('Content')
     .items([
       S.listItem()
-        .title('Event information')
+        .title('Website information')
         .icon(MdInfo)
         .child(
           S.editor()
-            .id('eventInformation')
-            .schemaType('eventInformation')
-            .documentId('eventInformation')
-        ),
-      S.listItem()
-        .title('Sessions')
-        .schemaType('session')
-        .child(S.documentTypeList('session').title('Sessions')),
-      S.listItem()
-        .title('Program')
-        .icon(MdEventNote)
-        .child(
-          S.editor()
-            .id('program')
-            .schemaType('program')
-            .documentId('program')
-        ),
-      S.listItem()
-        .title('Persons')
-        .icon(MdPerson)
-        .schemaType('person')
-        .child(S.documentTypeList('person').title('Persons')),
-      S.listItem()
-        .title('Code of Conduct')
-        .icon(MdGavel)
-        .child(
-          S.editor()
-            .id('codeOfConduct')
-            .schemaType('codeOfConduct')
-            .documentId('codeOfConduct')
+            .id('websiteInformation')
+            .schemaType('websiteInformation')
+            .documentId('websiteInformation')
+            .title('Website Information')
         ),
       S.listItem()
         .title('Posts')
@@ -69,6 +32,11 @@ export default () =>
         .icon(FaTags)
         .schemaType('tag')
         .child(S.documentTypeList('tag').title('Tags')),
+      S.listItem()
+        .title('Social Links')
+        .icon(FaTwitter)
+        .schemaType('social')
+        .child(S.documentTypeList('social').title('Social Links')),
       S.listItem()
         .title('Projects')
         .icon(MdWork)

@@ -24,27 +24,6 @@ export default {
 <style>
 @import '../styles/app.css';
 
-html {
-  font-family: var(--font-family-default);
-  font-size: var(--font-base-size);
-  line-height: var(--font-base-line-height);
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  background: var(--color-white);
-  color: var(--color-black);
-  margin: 0;
-}
-
-html,
-body,
-#__nuxt,
-#__layout,
-#__layout > div {
-  height: 100%;
-}
-
 .title {
   font-weight: 600;
   font-size: var(--font-title2-size);

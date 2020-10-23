@@ -6,7 +6,7 @@
   --color-dark-gray: #32373e;
   --color-gray: #6b6a79;
   --color-light-gray: #efefef;
-  --color-very-light-gray: #f8f8f8;
+  --color-very-light-gray: #ffffffb3;
   --color-white: #fff;
   --color-accent: #02c4ec;
 
@@ -38,7 +38,7 @@
   /* Widths */
   --width-x-small: 20em;
   --width-small: 40em;
-  --width-medium: 60em;
+  --width-medium: 70em;
   --width-large: 80em;
   --width-x-large: 100em;
 }

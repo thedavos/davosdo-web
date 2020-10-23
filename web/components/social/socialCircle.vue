@@ -24,8 +24,6 @@ export default {
   align-items: center;
   width: 35px;
   height: 35px;
-  line-height: 35px;
-  font-size: 16px;
   border-radius: 50%;
   color: var(--color-black);
   background-color: var(--color-white);

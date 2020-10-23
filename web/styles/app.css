@@ -1,6 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import './custom-media.css';
 @import './custom-properties.css';
+@import './plugins.css';
+
+html {
+  font-family: var(--font-family-default);
+  font-size: 14px;
+}
+
+body {
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-line-height);
+  -webkit-font-smoothing: antialiased;
+  background: var(--color-white);
+  color: var(--color-black);
+  margin: 0;
+}
+
+@media (--media-min-medium) {
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    font-size: var(--font-base-size);
+    line-height: var(--font-base-line-height);
+  }
+}
+
+@media (--media-min-large) {
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    font-size: var(--font-large-size);
+    line-height: var(--font-large-line-height);
+  }
+}
+
+html,
+body,
+#__nuxt,
+#__layout,
+#__layout > div {
+  height: 100%;
+}
 
 *::selection {
   color: var(--color-white);
@@ -21,4 +66,16 @@ img {
 
 a:hover {
   color: var(--color-accent);
+}
+
+.animate {
+  animation: animateElement cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;
+  animation-duration: 0.85s;
+  animation-iteration-count: 1;
+  transition: transform 0.2s;
+}
+
+.--shadowAccent:hover {
+  box-shadow: 0 -1px 0 0 var(--color-accent) inset,
+    0 -2px 0 0 var(--color-accent) inset;
 }

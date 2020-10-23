@@ -24,7 +24,7 @@ export default {
     {
       name: 'source',
       type: 'string',
-      title: 'Source'
+      title: 'Source (Github, Gitlab, etc...)'
     }
   ]
 }

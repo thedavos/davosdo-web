@@ -6,7 +6,11 @@
     <div class="recentPost-content">
       <time class="recentPost-content__date">{{ date }}</time>
       <h6 class="recentPost-content__title">
-        <a :href="url" target="_blank" class="recentPost-content__link">
+        <a
+          :href="url"
+          target="_blank"
+          class="recentPost-content__link --shadowAccent"
+        >
           {{ title }}
         </a>
       </h6>
@@ -79,6 +83,5 @@ export default {
 
 .recentPost-content__link:hover {
   color: black;
-  box-shadow: 0 -1px 0 0 #02c4ec inset, 0 -2px 0 0 #02c4ec inset;
 }
 </style>

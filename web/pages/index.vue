@@ -47,6 +47,14 @@ const query = `
   }
 `
 
+// {
+//   "data": *[_type == "post" ] {
+//   	...,
+//   	image { ..., asset-> },
+//   	"tags": tags[].tag->
+//   }
+// }
+
 export default {
   components: {
     Hero,
@@ -65,19 +73,28 @@ export default {
           title: 'Coinbel',
           description:
             "A minimalist Jekyll theme that you're looking at it right now",
-          tags: ['Sass', 'Bootstrap']
+          tags: ['Sass', 'Bootstrap'],
+          image:
+            'http://jamigibbs.github.io/phantom/img/posts/04_phantom-jekyll-1130x864-2x.png',
+          url: 'https://github.com/jamigibbs'
         },
         {
           title: 'Foxbel Video',
           description:
             "A minimalist Jekyll theme that you're looking at it right now",
-          tags: ['Sass', 'Bootstrap', 'Javascript', 'Vue']
+          tags: ['Sass', 'Bootstrap', 'Javascript', 'Vue'],
+          image:
+            'http://jamigibbs.github.io/phantom/img/posts/03_rescue-themes-1130x864-2x.png',
+          url: 'https://github.com/jamigibbs'
         },
         {
           title: 'Foxbel Music',
           description:
             "A minimalist Jekyll theme that you're looking at it right now",
-          tags: ['Sass', 'Bootstrap']
+          tags: ['Sass', 'Bootstrap'],
+          image:
+            'http://jamigibbs.github.io/phantom/img/posts/02_weathercast-1130x864-2x.png',
+          url: 'https://github.com/jamigibbs'
         }
       ]
     }
