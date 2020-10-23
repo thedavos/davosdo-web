@@ -11,16 +11,7 @@
 
 <script>
 export default {
-  props: {
-    title: {
-      type: String,
-      default: 'No title set'
-    },
-    ticketLink: {
-      type: String,
-      default: undefined
-    }
-  }
+  name: 'Navbar'
 }
 </script>
 

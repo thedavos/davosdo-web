@@ -72,15 +72,6 @@ export default {
       type: String,
       default: 'No title set'
     }
-  },
-  data: data => {
-    if (!data.$store.state) {
-      return
-    }
-    return {
-      year: new Date().getFullYear(),
-      eventInformation: data.$store.state.eventInformation
-    }
   }
 }
 </script>

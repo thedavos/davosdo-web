@@ -1,12 +1,12 @@
 import pkg from './package'
-import sanityClient from './sanityClient'
+// import sanityClient from './sanityClient'
 
-const routesQuery = `
-  {
-    "sessions": *[_type == "session"],
-    "speakers": *[_type == "person" && defined(slug.current)]
-  }
-`
+// const routesQuery = `
+//   {
+//     "sessions": *[_type == "session"],
+//     "speakers": *[_type == "person" && defined(slug.current)]
+//   }
+// `
 
 export default {
   ssr: false,
@@ -37,11 +37,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/eventInformation',
-    '~/plugins/smoothScroll',
-    '~/plugins/vue-agile'
-  ],
+  plugins: ['~/plugins/smoothScroll', '~/plugins/vue-agile'],
 
   /*
    ** Nuxt.js modules
@@ -61,24 +57,24 @@ export default {
   /*
    ** Set global info from sanity document
    */
-  eventInformation: () => {
-    return sanityClient.fetch('*[_id == "eventInformation"]').then(res => res)
-  },
+  // eventInformation: () => {
+  //   return sanityClient.fetch('*[_id == "eventInformation"]').then(res => res)
+  // },
 
   /*
    ** Generate dynamic routes from data from sanity.
    ** Used only for generating static served HTML files
    */
-  generate: {
-    routes: () => {
-      return sanityClient.fetch(routesQuery).then(res => {
-        return [
-          ...res.sessions.map(item => `/sessions/${item._id}`),
-          ...res.speakers.map(item => `/speakers/${item.slug.current}`)
-        ]
-      })
-    }
-  },
+  // generate: {
+  //   routes: () => {
+  //     return sanityClient.fetch(routesQuery).then(res => {
+  //       return [
+  //         ...res.sessions.map(item => `/sessions/${item._id}`),
+  //         ...res.speakers.map(item => `/speakers/${item.slug.current}`)
+  //       ]
+  //     })
+  //   }
+  // },
 
   /*
    ** Build configuration

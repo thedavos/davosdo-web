@@ -1,9 +1,6 @@
 <template>
   <div>
-    <Navbar
-      :title="$store.state.eventInformation.name"
-      :ticket-link="$store.state.eventInformation.ticket"
-    />
+    <Navbar />
     <nuxt />
     <Footer />
   </div>

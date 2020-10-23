@@ -33,19 +33,19 @@
 <script>
 import { dateFilter } from 'vue-date-fns'
 
-import sanityClient from '../sanityClient'
+// import sanityClient from '../sanityClient'
 import Hero from '~/components/Hero'
 import ProjectList from '~/components/projects/ProjectList'
 // import SanityImage from '~/components/SanityImage'
 // import SessionList from '~/components/SessionList'
 
-const query = `
-  {
-    "info": *[_id == "eventInformation"] {
-      ..., image { ..., asset->}
-    }[0]
-  }
-`
+// const query = `
+//   {
+//     "info": *[_id == "eventInformation"] {
+//       ..., image { ..., asset->}
+//     }[0]
+//   }
+// `
 
 // {
 //   "data": *[_type == "post" ] {
@@ -67,7 +67,6 @@ export default {
   },
   data() {
     return {
-      program: this.$store.getters.getProgram,
       projects: [
         {
           title: 'Coinbel',
@@ -98,30 +97,30 @@ export default {
         }
       ]
     }
-  },
-  async asyncData() {
-    return await sanityClient.fetch(query)
-  },
-  head() {
-    if (!this || !this.info) {
-      return
-    }
-    return {
-      title: this.info.name,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.info.description
-        },
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: this.info.keywords.join(',')
-        }
-      ]
-    }
   }
+  // async asyncData() {
+  //   return await sanityClient.fetch(query)
+  // },
+  // head() {
+  //   if (!this || !this.info) {
+  //     return
+  //   }
+  //   return {
+  //     title: this.info.name,
+  //     meta: [
+  //       {
+  //         hid: 'description',
+  //         name: 'description',
+  //         content: this.info.description
+  //       },
+  //       {
+  //         hid: 'keywords',
+  //         name: 'keywords',
+  //         content: this.info.keywords.join(',')
+  //       }
+  //     ]
+  //   }
+  // }
 }
 </script>
 
