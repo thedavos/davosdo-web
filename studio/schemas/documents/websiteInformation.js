@@ -20,6 +20,11 @@ export default {
       title: 'Author Job'
     },
     {
+      name: 'heroTitle',
+      type: 'string',
+      title: 'Hero Title'
+    },
+    {
       name: 'heroDescription',
       type: 'text',
       title: 'Hero Description',
