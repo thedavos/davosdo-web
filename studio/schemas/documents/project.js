@@ -9,11 +9,15 @@ export default {
       title: 'Title'
     },
     {
-      name: 'tag',
-      type: 'reference',
-      to: [
+      name: 'tags',
+      type: 'array',
+      title: 'Tags',
+      description: 'What tags will this project have?',
+      of: [
         {
-          type: 'tag'
+          name: 'tag',
+          type: 'tagReference',
+          title: 'Tag'
         }
       ]
     },
