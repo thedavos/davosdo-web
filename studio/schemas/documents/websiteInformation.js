@@ -2,7 +2,7 @@ export default {
   name: 'websiteInformation',
   type: 'document',
   title: 'Website Information',
-  __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
+  __experimental_actions: ['update', 'create', 'delete', 'publish'],
   fields: [
     {
       name: 'name',
