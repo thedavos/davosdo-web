@@ -15,13 +15,13 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: 'Davos',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
-    ]
-    //link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   /*
@@ -37,7 +37,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/smoothScroll', '~/plugins/vue-agile'],
+  plugins: [
+    '~/plugins/websiteInformation',
+    '~/plugins/smoothScroll',
+    '~/plugins/vue-agile'
+  ],
 
   /*
    ** Nuxt.js modules

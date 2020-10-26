@@ -20,10 +20,6 @@ export default {
     name: {
       type: String,
       required: true
-    },
-    iconType: {
-      type: String,
-      default: 'fab'
     }
   }
 }

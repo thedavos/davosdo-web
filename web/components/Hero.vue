@@ -1,30 +1,18 @@
 <template>
   <section class="hero-container">
     <div class="hero">
-      <h1 class="hero__title">Hello. I'm David Vargas.</h1>
+      <h1 class="hero__title">{{ websiteInformation.heroTitle }}</h1>
       <p class="hero__description">
-        I'm a software developer and designer from Chicago creating useful
-        things for the web. Why not get in touch?
+        {{ websiteInformation.heroDescription }}
       </p>
       <div class="hero__social">
         <SocialBlock
-          name="Twitter"
-          url="https://twitter.com/leonidasesteban"
-          icon="twitter"
-          blank
-          class="hero__socialItem"
-        />
-        <SocialBlock
-          name="Github"
-          url="https://twitter.com/leonidasesteban"
-          icon="github"
-          blank
-          class="hero__socialItem"
-        />
-        <SocialBlock
-          name="Medium"
-          url="https://twitter.com/leonidasesteban"
-          icon="medium"
+          v-for="social in socials"
+          :key="social._id"
+          :name="social.name"
+          :url="social.url"
+          :icon="social.icon"
+          :icon-type="social.type"
           blank
           class="hero__socialItem"
         />
@@ -53,6 +41,17 @@ export default {
 
   components: {
     SocialBlock
+  },
+
+  props: {
+    websiteInformation: {
+      type: Object,
+      default: () => {}
+    },
+    socials: {
+      type: Array,
+      default: () => []
+    }
   }
 }
 </script>
@@ -87,14 +86,11 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .hero__socialItem {
   margin-top: 1em;
-}
-
-.hero__socialItem:first-child {
-  margin-top: 0;
 }
 
 .hero-more__wrapper {
@@ -131,11 +127,10 @@ export default {
   .hero__social {
     flex-direction: row;
     justify-content: center;
-    margin: 6em 0;
+    margin: 5em 0 6em;
   }
 
   .hero__socialItem {
-    margin-top: 0;
     margin-left: 1em;
   }
 

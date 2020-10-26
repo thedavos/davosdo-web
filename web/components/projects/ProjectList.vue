@@ -1,10 +1,11 @@
 <template>
   <section id="projects" class="projectList">
     <div class="projectList-container">
-      <h2 class="projectList__title">Latest Work</h2>
+      <h2 class="projectList__title">
+        {{ websiteInformation.projectsTitle }}
+      </h2>
       <p class="projectList__description">
-        I have experience in a number of different areas. Have a look at what
-        I'm working on right now.
+        {{ websiteInformation.projectsDescription }}
       </p>
       <Project
         v-for="(project, index) in projects"
@@ -34,6 +35,11 @@ export default {
     projects: {
       type: Array,
       default: () => []
+    },
+
+    websiteInformation: {
+      type: Object,
+      default: () => {}
     }
   }
 }

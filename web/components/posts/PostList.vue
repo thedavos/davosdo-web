@@ -1,13 +1,11 @@
 <template>
   <div class="postList">
-    <div v-for="(post, index) in posts" :key="index" class="postList__post">
+    <div v-for="post in posts" :key="post._id" class="postList__post">
       <Post
-        :image="post.image"
-        :link="post.link"
-        :author="post.author"
-        :author-image="post.authorImage"
+        :image="post.image.asset.url"
+        :link="post.postUrl"
         :title="post.title"
-        :date="post.date"
+        :date="post.createdAt"
         :tags="post.tags"
       />
     </div>

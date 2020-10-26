@@ -1,8 +1,14 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar :logo-name="logoName" />
     <nuxt />
-    <Footer />
+    <Footer
+      :logo-name="logoName"
+      :description="$store.getters.websiteInformation.footerDescription"
+      :author="$store.getters.websiteInformation.author"
+      :socials="$store.getters.getSocials"
+      :recent-posts="$store.getters.getRecentPosts"
+    />
   </div>
 </template>
 
@@ -14,6 +20,15 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+
+  computed: {
+    logoName() {
+      return (
+        this.$store.getters.websiteInformation &&
+        this.$store.getters.websiteInformation.name
+      )
+    }
   }
 }
 </script>

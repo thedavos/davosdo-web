@@ -11,16 +11,14 @@
     >
       <div
         v-for="post in posts"
-        :key="post.id"
+        :key="post._id"
         class="postCarousel__post slide"
       >
         <Post
-          :image="post.image"
-          :link="post.link"
+          :image="post.image.asset.url"
+          :link="post.postUrl"
           :title="post.title"
-          :author="post.author"
-          :author-image="post.authorImage"
-          :date="post.date"
+          :date="post.createdAt"
           :tags="post.tags"
         />
       </div>

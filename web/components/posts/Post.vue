@@ -1,40 +1,61 @@
 <template>
-  <div class="post animate" :style="{ backgroundImage: 'url(' + image + ')' }">
+  <a
+    :href="link"
+    target="_blank"
+    class="post animate"
+    :style="{ backgroundImage: 'url(' + image + ')' }"
+  >
     <div class="post-content">
       <div class="post-author">
-        <nuxt-link to="/about" class="post-author__imageLink">
+        <nuxt-link to="/" class="post-author__imageLink">
           <img class="post-author__image" :src="authorImage" :alt="author" />
         </nuxt-link>
-        <nuxt-link to="/about" class="post-author__link">{{
-          author
-        }}</nuxt-link>
+        <nuxt-link to="/" class="post-author__link">{{ author }}</nuxt-link>
       </div>
       <h2 class="post-title">
-        <a href="" class="post-title__link --shadowAccent">{{ title }}</a>
+        <a
+          :href="link"
+          target="_blank"
+          class="post-title__link --shadowAccent"
+          >{{ title }}</a
+        >
       </h2>
       <div class="post-meta">
         <div class="post-tags">
           <div class="post-tags__box">
             <nuxt-link
-              v-for="(tag, index) in tags"
-              :key="index"
-              to="/"
-              class="post-tags__tag"
-              >{{ tag }}</nuxt-link
+              v-for="tag in tags"
+              :key="tag._id"
+              to="blog"
+              :class="[
+                'post-tags__tag',
+                {
+                  'post-tags--comma': tags.length > 1
+                }
+              ]"
+              >{{ tag.name }}</nuxt-link
             >
           </div>
         </div>
         <span class="post-date">
-          <time class="post-date__time">{{ date }}</time>
+          <time class="post-date__time">{{
+            date | format('MMMM d, YYYY')
+          }}</time>
         </span>
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
+import { dateFilter } from 'vue-date-fns'
+
 export default {
   name: 'Post',
+
+  filters: {
+    format: dateFilter
+  },
 
   props: {
     image: {
@@ -42,14 +63,6 @@ export default {
       required: true
     },
     link: {
-      type: String,
-      required: true
-    },
-    author: {
-      type: String,
-      required: true
-    },
-    authorImage: {
       type: String,
       required: true
     },
@@ -65,6 +78,15 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+
+  computed: {
+    authorImage() {
+      return this.$store.getters.websiteInformation.heroImage.asset.url
+    },
+    author() {
+      return this.$store.getters.websiteInformation.author
+    }
   }
 }
 </script>
@@ -73,6 +95,7 @@ export default {
 @import '../../styles/custom-properties.css';
 
 .post {
+  display: block;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -184,7 +207,7 @@ export default {
   line-height: var(--font-small-line-height);
 }
 
-.post-tags__tag:nth-of-type(odd)::after {
+.post-tags--comma::after {
   content: ',';
   margin: 0 2px;
   display: inline-block;

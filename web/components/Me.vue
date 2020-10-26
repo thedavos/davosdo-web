@@ -1,7 +1,7 @@
 <template>
   <div class="me">
     <figure class="me__image-wrapper">
-      <nuxt-link to="" class="me__image-link">
+      <nuxt-link to="/" class="me__image-link">
         <img :src="image" :alt="name" class="me__image-source" />
       </nuxt-link>
     </figure>
@@ -13,20 +13,11 @@
     </p>
     <div class="me__social">
       <SocialCircle
-        icon="twitter"
-        url="https://twitter.com/leonidasesteban"
-        blank
-        class="me__social-link"
-      />
-      <SocialCircle
-        icon="github"
-        url="https://twitter.com/leonidasesteban"
-        blank
-        class="me__social-link"
-      />
-      <SocialCircle
-        icon="medium"
-        url="https://twitter.com/leonidasesteban"
+        v-for="social in socials"
+        :key="social._id"
+        :icon="social.icon"
+        :icon-type="social.type"
+        :url="social.url"
         blank
         class="me__social-link"
       />
@@ -56,6 +47,10 @@ export default {
     job: {
       type: String,
       required: true
+    },
+    socials: {
+      type: Array,
+      default: () => []
     }
   }
 }

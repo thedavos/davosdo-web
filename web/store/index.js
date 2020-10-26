@@ -1,24 +1,32 @@
 export const state = () => ({
-  eventInformation: {
-    title: 'This is the test title'
-  },
-  program: {}
+  websiteInformation: {},
+  recentPosts: [],
+  socials: []
 })
 
 export const getters = {
-  eventInformation(state) {
-    return state.eventInformation
+  websiteInformation(state) {
+    return state.websiteInformation
   },
-  getProgram(state) {
-    return state.program
+  getRecentPosts(state) {
+    return state.recentPosts
+  },
+
+  getSocials(state) {
+    return state.socials
   }
 }
 
 export const mutations = {
-  setEventInformation(state, info) {
-    state.eventInformation = info
+  setWebsiteInformation(state, info) {
+    state.websiteInformation = info
   },
-  setProgram(state, program) {
-    state.program = program
+
+  setRecentPosts(state, posts) {
+    state.recentPosts = posts
+  },
+
+  setSocials(state, socials) {
+    state.socials = socials
   }
 }

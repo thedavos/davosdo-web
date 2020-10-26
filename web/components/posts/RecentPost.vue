@@ -4,7 +4,9 @@
       <img class="recentPost-url__image" :src="image" :alt="title" />
     </a>
     <div class="recentPost-content">
-      <time class="recentPost-content__date">{{ date }}</time>
+      <time class="recentPost-content__date">{{
+        date | format('MMMM d, YYYY')
+      }}</time>
       <h6 class="recentPost-content__title">
         <a
           :href="url"
@@ -19,8 +21,14 @@
 </template>
 
 <script>
+import { dateFilter } from 'vue-date-fns'
+
 export default {
   name: 'RecentPost',
+
+  filters: {
+    format: dateFilter
+  },
 
   props: {
     title: {

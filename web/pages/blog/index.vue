@@ -1,7 +1,13 @@
 <template>
   <section class="blog">
     <div class="blog__top">
-      <Me class="blog__me" :image="me.image" :name="me.name" :job="me.job" />
+      <Me
+        class="blog__me"
+        :image="me.image"
+        :name="me.name"
+        :job="me.job"
+        :socials="$store.getters.getSocials"
+      />
       <PostCarousel class="blog__carousel" :posts="posts" />
     </div>
     <PostList :posts="posts" />
@@ -9,9 +15,20 @@
 </template>
 
 <script>
+import sanityClient from '~/sanityClient'
 import Me from '~/components/Me'
 import PostList from '~/components/posts/PostList'
 import PostCarousel from '~/components/posts/PostCarousel'
+
+const query = `
+  {
+    "posts": *[_type == "post" ] {
+      ...,
+      image { ..., asset-> },
+      "tags": tags[].tag->
+    } [0..7] | order(createdAt desc)
+  }
+`
 
 export default {
   components: {
@@ -20,46 +37,33 @@ export default {
     Me
   },
 
-  data() {
+  computed: {
+    me() {
+      return {
+        image: this.$store.getters.websiteInformation.heroImage.asset.url,
+        name: this.$store.getters.websiteInformation.author,
+        job: this.$store.getters.websiteInformation.job
+      }
+    }
+  },
+
+  async asyncData() {
+    return await sanityClient.fetch(query)
+  },
+  head() {
+    const websiteInformation = this.$store.getters.websiteInformation
+
+    if (!websiteInformation) {
+      return
+    }
+
     return {
-      me: {
-        image: 'https://bonso.netlify.app/images/01.jpg',
-        name: 'David Vargas',
-        job: 'Frontend Developer & Technical Writer'
-      },
-      posts: [
+      title: websiteInformation.name + ' | Blog',
+      meta: [
         {
-          id: 13,
-          image: 'https://bonso.netlify.app/images/20.jpg',
-          link:
-            'https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger',
-          author: 'David Vargas',
-          authorImage: 'https://bonso.netlify.app/images/01.jpg',
-          title: 'That Which does not kill us makes us stronger',
-          date: 'NOV 13, 2018',
-          tags: ['Vue', 'Quasar']
-        },
-        {
-          id: 1343,
-          image: 'https://bonso.netlify.app/images/20.jpg',
-          link:
-            'https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger',
-          author: 'David Vargas',
-          authorImage: 'https://bonso.netlify.app/images/01.jpg',
-          title: 'That Which does not kill us makes us stronger',
-          date: 'NOV 13, 2018',
-          tags: ['CSS', 'Javascript']
-        },
-        {
-          id: 133,
-          image: 'https://bonso.netlify.app/images/20.jpg',
-          link:
-            'https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger',
-          author: 'David Vargas',
-          authorImage: 'https://bonso.netlify.app/images/01.jpg',
-          title: 'That Which does not kill us makes us stronger',
-          date: 'NOV 13, 2018',
-          tags: ['Node.js', 'React']
+          hid: 'description',
+          name: 'description',
+          content: websiteInformation.footerDescription
         }
       ]
     }
@@ -89,7 +93,7 @@ export default {
   align-self: flex-end;
 }
 
-@media (--media-min-medium) {
+@media (--media-min-large) {
   .blog__top {
     display: grid;
     grid-template-columns: repeat(2, minmax(280px, 1fr));

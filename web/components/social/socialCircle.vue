@@ -1,6 +1,6 @@
 <template>
   <a :href="url" class="socialCircle" :target="isBlank">
-    <font-awesome-icon class="socialCircle__icon" :icon="['fab', icon]" />
+    <font-awesome-icon class="socialCircle__icon" :icon="[iconType, icon]" />
   </a>
 </template>
 

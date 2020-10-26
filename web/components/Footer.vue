@@ -4,55 +4,40 @@
       <div class="footer-top">
         <div class="footer-intro">
           <div class="footer-logo">
-            <a href="" class="footer-logo__link">Davos</a>
+            <a href="" class="footer-logo__link">{{ logoName }}</a>
           </div>
           <p class="footer-description">
-            Hi, my name is Adam Howard. I’m a writer and photographer based in
-            Portland. I like being at the center of events, being free and
-            enjoying every moment.
+            {{ description }}
           </p>
           <div class="footer-social">
             <SocialCircle
-              icon="twitter"
-              url="https://twitter.com/leonidasesteban"
-              blank
-              class="footer-social__link"
-            />
-            <SocialCircle
-              icon="github"
-              url="https://twitter.com/leonidasesteban"
-              blank
-              class="footer-social__link"
-            />
-            <SocialCircle
-              icon="medium"
-              url="https://twitter.com/leonidasesteban"
+              v-for="social in socials"
+              :key="social._id"
+              :icon="social.icon"
+              :icon-type="social.type"
+              :url="social.url"
               blank
               class="footer-social__link"
             />
           </div>
         </div>
         <div class="footer-posts">
-          <h2 class="footer-posts__title">Recent Posts</h2>
+          <h2 class="footer-posts__title">Artículos Recientes</h2>
           <RecentPost
+            v-for="post in recentPosts"
+            :key="post._id"
+            :title="post.title"
+            :date="post.createdAt"
+            :image="post.image.asset.url"
+            :url="post.postUrl"
             class="footer-post__recentPost"
-            title="That which does not kill us makes us stronger"
-            date="NOV 13, 2018"
-            image="https://bonso.netlify.app/images/20.jpg"
-            url="https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger"
-          />
-          <RecentPost
-            class="footer-post__recentPost"
-            title="Do what you can, with what you have, where you are"
-            date="NOV 12, 2018"
-            image="https://bonso.netlify.app/images/20.jpg"
-            url="https://bonso.netlify.app/that-which-does-not-kill-us-makes-us-stronger"
           />
         </div>
       </div>
       <div class="footer-power">
-        2020 © <a href="/" target="_blank">Davos</a>. Developed & Designed by
-        <a href="" target="_blank">David Vargas</a>.
+        2020 © <a href="/" target="_blank">{{ logoName }}</a
+        >. Developed & Designed by <a href="" target="_blank">{{ author }}</a
+        >.
       </div>
     </div>
   </footer>
@@ -68,9 +53,25 @@ export default {
     RecentPost
   },
   props: {
-    title: {
+    logoName: {
       type: String,
-      default: 'No title set'
+      required: true
+    },
+    author: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    socials: {
+      type: Array,
+      default: () => []
+    },
+    recentPosts: {
+      type: Array,
+      default: () => []
     }
   }
 }

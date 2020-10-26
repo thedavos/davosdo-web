@@ -1,59 +1,52 @@
 <template>
   <main class="home-container">
-    <Hero />
-    <ProjectList class="home-projectList" :projects="projects" />
-    <!-- <header class="header">
-      <h1 class="title">{{ info.name }}</h1>
-      <p class="subtitle">{{ info.description }}</p>
-      <div class="dates">
-        {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
-        &ndash;
-        {{ new Date(info.schedule.to) | dateFilter('ha') }}
+    <Hero :website-information="websiteInformation" :socials="socials" />
+    <ProjectList
+      v-if="projects.length > 0"
+      class="home-projectList"
+      :website-information="websiteInformation"
+      :projects="projects"
+    />
+    <section v-else class="home-wip__container">
+      <div class="home-wip__wrapper">
+        <h2 class="home-wip__description">
+          Trabajando en muchos proyectos actualmente. Publicaré pronto!
+        </h2>
+        <svg class="home-wip">
+          <image
+            class="home-wip__image"
+            :xlink:href="require('~/assets/wip.svg')"
+            width="150"
+            height="150"
+          />
+        </svg>
       </div>
-      <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div>
-    </header> -->
-
-    <!-- <figure :v-if="info.image">
-      <SanityImage
-        :image="info.image"
-        :width="1800"
-        :height="500"
-        class="mainImage"
-      />
-      <figcaption>{{ info.image.caption }}</figcaption>
-    </figure>
-
-    <div class="sessionListContainer">
-      <h2 class="sessionListTitle">Schedule</h2>
-      <SessionList :program="program" :info="info" />
-    </div> -->
+    </section>
   </main>
 </template>
 
 <script>
 import { dateFilter } from 'vue-date-fns'
 
-// import sanityClient from '../sanityClient'
+import sanityClient from '../sanityClient'
 import Hero from '~/components/Hero'
 import ProjectList from '~/components/projects/ProjectList'
-// import SanityImage from '~/components/SanityImage'
-// import SessionList from '~/components/SessionList'
 
-// const query = `
-//   {
-//     "info": *[_id == "eventInformation"] {
-//       ..., image { ..., asset->}
-//     }[0]
-//   }
-// `
-
-// {
-//   "data": *[_type == "post" ] {
-//   	...,
-//   	image { ..., asset-> },
-//   	"tags": tags[].tag->
-//   }
-// }
+const query = `
+  {
+    "websiteInformation": *[_id == "websiteInformation"] {
+      author,
+      name,
+      heroTitle,
+      heroDescription,
+      projectsTitle,
+      projectsDescription,
+      footerDescription
+    }[0],
+		"projects": *[_type == "project"],
+		"socials": *[_type == "social"] | order(name desc)
+  }
+`
 
 export default {
   components: {
@@ -65,62 +58,25 @@ export default {
   filters: {
     dateFilter
   },
-  data() {
+  async asyncData() {
+    return await sanityClient.fetch(query)
+  },
+  head() {
+    if (!this || !this.websiteInformation) {
+      return
+    }
+
     return {
-      projects: [
+      title: this.websiteInformation.name,
+      meta: [
         {
-          title: 'Coinbel',
-          description:
-            "A minimalist Jekyll theme that you're looking at it right now",
-          tags: ['Sass', 'Bootstrap'],
-          image:
-            'http://jamigibbs.github.io/phantom/img/posts/04_phantom-jekyll-1130x864-2x.png',
-          url: 'https://github.com/jamigibbs'
-        },
-        {
-          title: 'Foxbel Video',
-          description:
-            "A minimalist Jekyll theme that you're looking at it right now",
-          tags: ['Sass', 'Bootstrap', 'Javascript', 'Vue'],
-          image:
-            'http://jamigibbs.github.io/phantom/img/posts/03_rescue-themes-1130x864-2x.png',
-          url: 'https://github.com/jamigibbs'
-        },
-        {
-          title: 'Foxbel Music',
-          description:
-            "A minimalist Jekyll theme that you're looking at it right now",
-          tags: ['Sass', 'Bootstrap'],
-          image:
-            'http://jamigibbs.github.io/phantom/img/posts/02_weathercast-1130x864-2x.png',
-          url: 'https://github.com/jamigibbs'
+          hid: 'description',
+          name: 'description',
+          content: this.websiteInformation.footerDescription
         }
       ]
     }
   }
-  // async asyncData() {
-  //   return await sanityClient.fetch(query)
-  // },
-  // head() {
-  //   if (!this || !this.info) {
-  //     return
-  //   }
-  //   return {
-  //     title: this.info.name,
-  //     meta: [
-  //       {
-  //         hid: 'description',
-  //         name: 'description',
-  //         content: this.info.description
-  //       },
-  //       {
-  //         hid: 'keywords',
-  //         name: 'keywords',
-  //         content: this.info.keywords.join(',')
-  //       }
-  //     ]
-  //   }
-  // }
 }
 </script>
 
@@ -138,54 +94,35 @@ export default {
   margin: 4em 0;
 }
 
-.header {
+.home-wip__container {
+  position: relative;
+  max-width: var(--width-medium);
+  margin: auto;
   padding: 0 1.5rem;
+  display: flex;
+  min-height: 500px;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-wip__description {
   text-align: center;
+  font-size: var(--font-title3-size);
+  line-height: var(--font-title3-line-height);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark-gray);
+  margin-top: 0;
 }
 
-.title + p + .dates {
-  margin-bottom: 0;
-  font-weight: 600;
+.home-wip {
+  width: 360px;
+  height: 230px;
+  display: block;
+  margin: auto;
 }
 
-.title + p + .dates + .venue {
-  font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
-  margin-bottom: 5rem;
-}
-
-figure {
-  margin: 0 0 3em;
-}
-
-figcaption {
-  font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
-  padding: 0.25rem 1.5rem;
-}
-
-.mainImage {
+.home-wip__image {
   width: 100%;
-  vertical-align: top;
-}
-
-.sessionListTitle {
-  text-align: center;
-  font-weight: 600;
-  font-size: var(--font-title2-size);
-  line-height: var(--font-title2-line-height);
-  margin: 0 0 3rem;
-
-  @media (--media-min-medium) {
-    font-size: var(--font-title1-size);
-    line-height: var(--font-title1-line-height);
-  }
-}
-
-.sessionListContainer {
-  max-width: var(--width-small);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
+  height: 100%;
 }
 </style>

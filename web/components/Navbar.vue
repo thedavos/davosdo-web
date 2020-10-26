@@ -1,9 +1,9 @@
 <template>
   <header class="header">
-    <nuxt-link to="/" class="home">Davos</nuxt-link>
+    <nuxt-link to="/" class="home">{{ logoName }}</nuxt-link>
     <nav>
-      <nuxt-link to="/about" class="header__link">About</nuxt-link>
-      <nuxt-link to="/projects" class="header__link">Projects</nuxt-link>
+      <!-- <nuxt-link to="/about" class="header__link">Sobre mí</nuxt-link>
+      <nuxt-link to="/projects" class="header__link">Proyectos</nuxt-link> -->
       <nuxt-link to="/blog" class="header__link">Blog</nuxt-link>
     </nav>
   </header>
@@ -11,7 +11,14 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+
+  props: {
+    logoName: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
 

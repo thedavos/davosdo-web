@@ -8,6 +8,10 @@ const socialMixin = {
       type: String,
       required: true
     },
+    iconType: {
+      type: String,
+      default: 'fab'
+    },
     blank: {
       type: Boolean,
       default: false,
