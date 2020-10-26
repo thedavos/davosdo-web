@@ -72,15 +72,8 @@ export default {
 </script>
 
 <style scoped>
+@import '../../styles/custom-media.css';
 @import '../../styles/custom-properties.css';
-
-@media (--media-min-large) {
-  .blog__top {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
-    grid-gap: 20px;
-  }
-}
 
 .blog {
   padding: 1.5rem;
@@ -99,5 +92,13 @@ export default {
 
 .blog__carousel {
   align-self: flex-end;
+}
+
+@media (--media-min-large) {
+  .blog__top {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    grid-gap: 20px;
+  }
 }
 </style>
