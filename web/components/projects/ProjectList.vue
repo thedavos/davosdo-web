@@ -8,13 +8,15 @@
         {{ websiteInformation.projectsDescription }}
       </p>
       <Project
-        v-for="(project, index) in projects"
-        :key="index"
+        v-for="project in projects"
+        :key="project._id"
         :title="project.title"
         :description="project.description"
         :tags="project.tags"
-        :url="project.url"
-        :image="project.image"
+        :url="project.projectDetails.projectUrl"
+        :image="project.image.asset.url"
+        :repository="project.projectDetails.source"
+        :source-code="project.projectDetails.codeUrl"
         class="projectList__project"
       />
     </div>

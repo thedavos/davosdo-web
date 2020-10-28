@@ -43,7 +43,10 @@ const query = `
       projectsDescription,
       footerDescription
     }[0],
-		"projects": *[_type == "project"],
+    "projects": *[_type == "project"] {
+      ..., image { ..., asset-> },
+			"tags": tags[].tag->
+    } | order(_createdAt asc),
 		"socials": *[_type == "social"] | order(name desc)
   }
 `

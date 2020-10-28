@@ -2,17 +2,31 @@
   <div class="project">
     <div class="project__content">
       <h3 class="project__title">{{ title }}</h3>
-      <p class="project__excerpt">{{ description }}</p>
-      <SocialBlock
-        class="project__button"
-        :url="url"
-        icon-type="fas"
-        icon="link"
-        name="Visit Project"
-      />
+      <p class="project__excerpt">{{ description | blocksToText }}</p>
+      <div class="project__links">
+        <SocialBlock
+          class="project__button"
+          :url="url"
+          icon-type="fas"
+          icon="link"
+          name="Ver proyecto"
+        />
+        <a
+          v-if="repository"
+          class="project__source"
+          :href="sourceCode"
+          target="_blank"
+        >
+          <font-awesome-icon
+            class="project__source-icon"
+            :icon="['fab', repository]"
+          />
+          <span class="project__source-text">Repositorio</span>
+        </a>
+      </div>
       <div class="project-tags">
-        <div v-for="(tag, index) in tags" :key="index" class="project__tag">
-          <span>{{ tag }}</span>
+        <div v-for="tag in tags" :key="tag._id" class="project__tag">
+          <span>{{ tag.name }}</span>
         </div>
       </div>
     </div>
@@ -24,6 +38,7 @@
 
 <script>
 import SocialBlock from '../social/socialBlock'
+import blocksToText from '~/lib/blocksToText'
 
 export default {
   name: 'Project',
@@ -32,13 +47,17 @@ export default {
     SocialBlock
   },
 
+  filters: {
+    blocksToText
+  },
+
   props: {
     title: {
       type: String,
       required: true
     },
     description: {
-      type: String,
+      type: Array,
       required: true
     },
     tags: {
@@ -53,6 +72,16 @@ export default {
     url: {
       type: String,
       required: true
+    },
+    repository: {
+      type: String,
+      default: '',
+      required: false
+    },
+    sourceCode: {
+      type: String,
+      default: '',
+      required: false
     }
   }
 }
@@ -85,7 +114,9 @@ export default {
   margin-bottom: 0;
 }
 
-.project__button {
+.project__links {
+  display: flex;
+  align-items: center;
   margin-top: 1em;
 }
 
@@ -112,6 +143,17 @@ export default {
 
 .project__figure {
   display: none;
+}
+
+.project__source {
+  display: inline-block;
+  margin-left: 0.8rem;
+}
+
+.project__source-text {
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-line-height);
+  font-weight: var(--font-weight-medium);
 }
 
 @media (--media-min-medium) {
