@@ -178,6 +178,7 @@ export default {
 
   .project__content {
     margin-right: 5em;
+    width: 50%;
   }
 
   .project__figure {
